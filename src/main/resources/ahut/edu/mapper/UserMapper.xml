@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ahut.edu.mapper.UserMapper" >
+  <resultMap id="BaseResultMap" type="ahut.edu.entity.User" >
+    <result column="USER_NAME" property="userName" jdbcType="VARCHAR" />
+    <result column="USER_CNAME" property="userCname" jdbcType="VARCHAR" />
+    <result column="USER_PWD" property="userPwd" jdbcType="VARCHAR" />
+    <result column="MOBILE" property="mobile" jdbcType="VARCHAR" />
+    <result column="EMAIL" property="email" jdbcType="VARCHAR" />
+    <result column="ROLE_CODE" property="roleCode" jdbcType="VARCHAR" />
+    <result column="GH" property="gh" jdbcType="VARCHAR" />
+    <result column="XM" property="xm" jdbcType="VARCHAR" />
+    <result column="SZDWH" property="szdwh" jdbcType="VARCHAR" />
+    <result column="SZDW" property="szdw" jdbcType="VARCHAR" />
+    <result column="IS_VALID" property="isValid" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    USER_NAME, USER_CNAME, USER_PWD, MOBILE,EMAIL,ROLE_CODE,GH,XM,SZDWH,SZDW,IS_VALID
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from WEB_USER
+    where USER_NAME = #{userId,jdbcType=VARCHAR}
+  </select>
+  <select id="getAllUser" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" /> from WEB_USER
+  </select>
+  <insert id="insert" parameterType="ahut.edu.entity.User" >
+    insert into WEB_USER (USER_NAME, USER_CNAME, USER_PWD, 
+      MOBILE, EMAIL, ROLE_CODE, 
+      GH, XM, SZDWH, SZDW, 
+      IS_VALID)
+    values (#{userName,jdbcType=VARCHAR}, #{userCname,jdbcType=VARCHAR}, #{userPwd,jdbcType=VARCHAR}, 
+      #{mobile,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{roleCode,jdbcType=VARCHAR}, 
+      #{gh,jdbcType=VARCHAR}, #{xm,jdbcType=VARCHAR}, #{szdwh,jdbcType=VARCHAR}, #{szdw,jdbcType=VARCHAR}, 
+      #{isValid,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="ahut.edu.entity.User" >
+    insert into WEB_USER
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userName != null" >
+        USER_NAME,
+      </if>
+      <if test="userCname != null" >
+        USER_CNAME,
+      </if>
+      <if test="userPwd != null" >
+        USER_PWD,
+      </if>
+      <if test="mobile != null" >
+        MOBILE,
+      </if>
+      <if test="email != null" >
+        EMAIL,
+      </if>
+      <if test="roleCode != null" >
+        ROLE_CODE,
+      </if>
+      <if test="gh != null" >
+        GH,
+      </if>
+      <if test="xm != null" >
+        XM,
+      </if>
+      <if test="szdwh != null" >
+        SZDWH,
+      </if>
+      <if test="szdw != null" >
+        SZDW,
+      </if>
+      <if test="isValid != null" >
+        IS_VALID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userCname != null" >
+        #{userCname,jdbcType=VARCHAR},
+      </if>
+      <if test="userPwd != null" >
+        #{userPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="roleCode != null" >
+        #{roleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="gh != null" >
+        #{gh,jdbcType=VARCHAR},
+      </if>
+      <if test="xm != null" >
+        #{xm,jdbcType=VARCHAR},
+      </if>
+      <if test="szdwh != null" >
+        #{szdwh,jdbcType=VARCHAR},
+      </if>
+      <if test="szdw != null" >
+        #{szdw,jdbcType=VARCHAR},
+      </if>
+      <if test="isValid != null" >
+        #{isValid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="ahut.edu.entity.User" >
+    update t_user
+    set USER_NAME = #{userName,jdbcType=VARCHAR},
+    USER_CNAME = #{userCName,jdbcType=VARCHAR},
+    USER_PWD = #{userPwd,jdbcType=VARCHAR},
+    MOBILE = #{mobile,jdbcType=VARCHAR},
+    EMAIL = #{email,jdbcType=VARCHAR},
+    ROLE_CODE = #{roleCode,jdbcType=VARCHAR},
+    GH = #{gh,jdbcType=VARCHAR},
+    XM = #{xm,jdbcType=VARCHAR},
+    SZDWH = #{szdwh,jdbcType=VARCHAR},
+    SZDW = #{szdw,jdbcType=VARCHAR},
+    IS_VALID = #{isValid,jdbcType=VARCHAR},
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="ahut.edu.entity.User" >
+    update t_user
+    <set >
+      <if test="userName != null" >
+        USER_NAME = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userCname != null" >
+        USER_CNAME = #{userCname,jdbcType=VARCHAR},
+      </if>
+      <if test="userPwd != null" >
+        USER_PWD = #{userPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        MOBILE = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+      EMAIL = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="roleCode != null" >
+        ROLE_CODE = #{roleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="gh != null" >
+        GH = #{gh,jdbcType=VARCHAR},
+      </if>
+      <if test="xm != null" >
+        XM = #{xm,jdbcType=VARCHAR},
+      </if>
+      <if test="szdwh != null" >
+        SZDWH = #{szdwh,jdbcType=VARCHAR},
+      </if>
+      <if test="szdw != null" >
+        SZDW = #{szdw,jdbcType=VARCHAR},
+      </if>
+      <if test="isValid != null" >
+        IS_VALID = #{isValid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=CHAR}
+  </update>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from WEB_USER
+    where USER_NAME = #{userId,jdbcType=VARCHAR}
+  </delete>
+</mapper>
